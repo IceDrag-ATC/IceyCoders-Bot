@@ -26,9 +26,12 @@ async def on_ready():
     for filename in os.listdir('./commands'):
         if filename.endswith('.py'):
             client.load_extension(f'commands.{filename[:-3]}')
+    #if a command is in a folder that is with in a folder do client.load_extension(f'commands.(foldername).(filename)')
 
 @client.listen()
 async def on_member_join(member):
+    role = client.fetch.role("Not Verified")
+    await client.add_role(role)
     print (f"{member.name}, {member.id}. Member count - {client.guilds[0].member_count}")
 
 #Ping
