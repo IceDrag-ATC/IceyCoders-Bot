@@ -17,7 +17,7 @@ class Button(commands.Cog, name="Verify"):
     @commands.command()
     @commands.is_owner()
     async def verify(self, ctx: commands.Context):
-        await ctx.send("Click a button to add or remove a role.", view=VerifyView())
+        await ctx.send("Click the button below to gain access to the server.", view=VerifyView())
     
 def setup(bot: commands.Bot):
     bot.add_cog(Button(bot))
