@@ -11,6 +11,7 @@ class Button(commands.Cog, name="Verify"):
         if not self.verify_persistent_view:
             self.bot.add_view(VerifyView())
             self.verify_persistent_view = True
+            print('loading persistent view')
 
     @commands.command()
     @commands.is_owner()

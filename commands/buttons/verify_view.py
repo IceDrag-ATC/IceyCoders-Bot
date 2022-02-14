@@ -12,11 +12,15 @@ class VerifyView(nextcord.ui.View):
         nver = interaction.guild.get_role(942461297465909318)
         assert isinstance(role, nextcord.Role)
         if role in interaction.user.roles:
+            await interaction.user.add_roles(nver)
             await interaction.user.remove_roles(role)
             await interaction.response.send_message(f"Your {role.name} role has been removed.", ephemeral=True)
         else:
             await interaction.user.add_roles(role)
-            await interaction.user.remove_roles(nver)
+            try:
+                await interaction.user.remove_roles(nver)
+            except:
+                return
             await interaction.response.send_message(f"You have been given the {role.name} role.", ephemeral=True)
 
     def custom_id(view: str, id: int) -> str:
