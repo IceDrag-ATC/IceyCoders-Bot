@@ -6,7 +6,7 @@ from typing import Dict
 
 import nextcord as discord
 from nextcord.ext import commands
-from utils import fuzzy
+from .utils import fuzzy
 
 class SphinxObjectFileReader:
     # Inspired by Sphinx's InventoryFileReader

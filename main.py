@@ -1,6 +1,6 @@
 import nextcord
 from nextcord.ext import commands
-import os, inspect, datetime, time, json, asyncio, random, psutil
+import os, inspect, datetime, time, json, asyncio, random, psutil, aiohttp
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -92,6 +92,11 @@ async def eval_(ctx, *, command):
 
   except Exception:
     pass
+
+async def startup():
+    client.session = aiohttp.ClientSession()
+
+client.loop.create_task(startup())
 
 
 client.run(os.environ['DISCORD_TOKEN'])
