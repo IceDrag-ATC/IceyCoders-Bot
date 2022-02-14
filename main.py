@@ -1,7 +1,8 @@
 import nextcord
 from nextcord.ext import commands
-import os, inspect, datetime, time, json, asyncio, random, psutil, aiohttp
+import os, inspect, time, asyncio, aiohttp
 from dotenv import load_dotenv
+from commands.buttons.verify_view import VerifyView
 
 load_dotenv()
 
@@ -15,7 +16,7 @@ intents = nextcord.Intents.all()
 client = commands.Bot(command_prefix=',',owner_id=703578212072161280, intents=intents)
 start_time = time.time()
 #client.remove_command('help')
-persistent_views_added = False
+client.persistent_views_added = False
 
 @client.event
 async def on_ready():
@@ -28,6 +29,10 @@ async def on_ready():
             client.load_extension(f'commands.{filename[:-3]}')
     #if a command is in a folder that is with in a folder do client.load_extension(f'commands.(foldername).(filename)')
     client.load_extension("commands.buttons.verify_message")
+    if not client.persistent_views_added:
+        client.add_view(VerifyView())
+    client.persistent_views_added = True
+    print('loading persistent view')
 
 @client.listen()
 async def on_member_join(member):

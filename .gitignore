@@ -1,3 +1,5 @@
 .env
 cheese.json
 inventory.json
+venv
+__pycache__/
