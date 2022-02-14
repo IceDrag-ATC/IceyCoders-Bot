@@ -27,13 +27,13 @@ async def on_ready():
         if filename.endswith('.py'):
             client.load_extension(f'commands.{filename[:-3]}')
     #if a command is in a folder that is with in a folder do client.load_extension(f'commands.(foldername).(filename)')
-    client.load_extension(f'commands.utils.rtfm')
+    client.load_extension("commands.buttons.verify_message")
 
 @client.listen()
 async def on_member_join(member):
     role = member.guild.get_role(942809328019206195)
     channel = member.guild.get_channel(942455999988650038)
-    await member.add_role(role)
+    await member.add_roles(role)
     await channel.send(f"{member.mention} Has joined the server! Please read <#942470239633961002> before verifying in <#942470122902265856>.")
     print (f"{member.name}, {member.id}. Member count - {client.guilds[0].member_count}")
 
