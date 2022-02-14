@@ -8,7 +8,7 @@ class VerifyView(nextcord.ui.View):
         super().__init__(timeout=None)
 
     async def handle_click(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
-        role = interaction.guild.get_role(942855739326746624)
+        role = interaction.guild.get_role(942461296836759592)
         nver = interaction.guild.get_role(942461297465909318)
         assert isinstance(role, nextcord.Role)
         if role in interaction.user.roles:
