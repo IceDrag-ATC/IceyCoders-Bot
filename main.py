@@ -34,14 +34,15 @@ async def on_ready():
     client.persistent_views_added = True
     print('loading persistent view')
 
+
 @client.listen()
 async def on_member_join(member: nextcord.Member):
-    guild = client.get_guild
-    role = member.get_role(942461297465909318)
+    role = nextcord.utils.get(member.get_role, name="Not Verified")
     channel = client.get_channel(942809091401744524)
     await member.add_roles(role)
     await channel.send(f"{member.mention} Has joined the server! Please read <#942470239633961002> before verifying in <#942470122902265856>.")
     print (f"{member.name}, {member.id}. Member count - {client.guilds[0].member_count}")
+
 
 #Ping
 
