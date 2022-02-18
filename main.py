@@ -3,6 +3,7 @@ from nextcord.ext import commands
 import os, inspect, datetime, time, json, asyncio, random, psutil, aiohttp
 from dotenv import load_dotenv
 from commands.buttons.verify_view import VerifyView
+from commands.buttons.sr_view import SRView
 
 load_dotenv()
 
@@ -29,15 +30,21 @@ async def on_ready():
             client.load_extension(f'commands.{filename[:-3]}')
     #if a command is in a folder that is with in a folder do client.load_extension(f'commands.(foldername).(filename)')
     client.load_extension("commands.buttons.verify_message")
+    client.load_extension("commands.buttons.sr_message")
     if not client.persistent_views_added:
         client.add_view(VerifyView())
     client.persistent_views_added = True
-    print('loading persistent view')
+    print('loading verify persistent view')
+    if not client.persistent_views_added:
+        client.add_view(SRView())
+    client.persistent_views_added = True
+    print('loading self roles persistent view')
 
 
 @client.listen()
 async def on_member_join(member: nextcord.Member):
-    role = nextcord.utils.get(member.get_role, name="Not Verified")
+    guild = member.guild
+    role = guild.get_role(942461297465909318)
     channel = client.get_channel(942809091401744524)
     await member.add_roles(role)
     await channel.send(f"{member.mention} Has joined the server! Please read <#942470239633961002> before verifying in <#942470122902265856>.")
