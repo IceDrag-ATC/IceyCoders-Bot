@@ -19,7 +19,7 @@ class Button(commands.Cog, name="SR"):
     async def sr(self, ctx: commands.Context):
         embed = nextcord.Embed(
             title = "Self Roles",
-            description="Get yoru very own self roles here, Look at the list below for some options on what to pick",
+            description="Get your very own self roles here, Look at the list below for some options on what to pick.",
             color=nextcord.Color.fuchsia()
         )
         await ctx.send(embed=embed, view=SRView())

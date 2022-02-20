@@ -27,7 +27,7 @@ class SRView(nextcord.ui.View):
     async def HELPERSNS_button(self, button, interaction):
         await self.handle_click(button, interaction)
     
-    @nextcord.ui.button(label="Announcements Ping", style=nextcord.ButtonStyle.blurple, custom_id='SRView:942882077303525377')
+    @nextcord.ui.button(label="Announcements Ping", style=nextcord.ButtonStyle.secondary, custom_id='SRView:942882077303525377')
     async def ALERTS_button(self, button, interaction):
         await self.handle_click(button, interaction)
     
