@@ -8,7 +8,6 @@ class Button(commands.Cog, name="SR"):
         self.sr_persistent_view = False
     @commands.Cog.listener()
     async def on_ready(self):
-        await self.bot.wait_until_ready()
         if not self.sr_persistent_view:
             self.bot.add_view(SRView())
             self.sr_persistent_view = True
