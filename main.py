@@ -33,12 +33,9 @@ async def on_ready():
     client.load_extension("commands.buttons.sr_message")
     if not client.persistent_views_added:
         client.add_view(VerifyView())
-    client.persistent_views_added = True
-    print('loading verify persistent view')
-    if not client.persistent_views_added:
         client.add_view(SRView())
     client.persistent_views_added = True
-    print('loading self roles persistent view')
+    print('loading persistent views')
 
 
 @client.listen()

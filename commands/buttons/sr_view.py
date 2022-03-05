@@ -5,7 +5,7 @@ HELPERNS_ID = "942882061751029780"
 ALERTS_ID = "942882077303525377"
 YTF_ID = "942882082055663637"
 
-class SRView(nextcord.ui.Button):
+class SRView(nextcord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
 
