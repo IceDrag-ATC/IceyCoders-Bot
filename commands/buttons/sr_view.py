@@ -4,6 +4,7 @@ VIEW_NAME = "SRView"
 HELPERNS_ID = "942882061751029780"
 ALERTS_ID = "942882077303525377"
 YTF_ID = "942882082055663637"
+POLLS_ID = "949736349970358352"
 
 class SRView(nextcord.ui.View):
     def __init__(self):
@@ -33,4 +34,8 @@ class SRView(nextcord.ui.View):
     
     @nextcord.ui.button(label="Youtube Notifications", style=nextcord.ButtonStyle.red, custom_id='SRView:942882082055663637')
     async def YTF_button(self, button, interaction):
+        await self.handle_click(button, interaction)
+    
+    @nextcord.ui.button(label="Poll Pings", style=nextcord.ButtonStyle.blurple, custom_id='SRView:949736349970358352')
+    async def PP_button(self, button, interaction):
         await self.handle_click(button, interaction)
