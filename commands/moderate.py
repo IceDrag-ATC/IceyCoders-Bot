@@ -1,7 +1,6 @@
 import nextcord
 from nextcord.ext import commands
-import random
-import string
+import random, string, datetime
 
 
 class moderate(commands.Cog):
@@ -24,19 +23,27 @@ class moderate(commands.Cog):
     nick = ''.join(random.choices(string.ascii_uppercase + string.digits, k=9))
 
     try:
-      moderated = ctx.fetch_user(target)
-      dm = moderated.create_dm()
+      guild = ctx.guild
+      dm = await target.create_dm()
       embed = nextcord.Embed(
         title = "Alert",
-        description=f"Your have been moderated in Fallen worlds, as your name has some special characters in it. If you want your name back go to <#922961486937206804> and do `!verify` to get your name back."
+        description=f"Your have been moderated in {guild.name}, as your name has some special characters in it. If you want your name back go to <#922961486937206804> and do `!verify` to get your name back."
       )
       await dm.send(embed=embed)
     except:
       pass
 
     try:
+      embed = nextcord.Embed(
+        title = "Moderate Success",
+        description = f"The user of {target.name} was successfully moderated!",
+        color = nextcord.Color.green()
+      )
+      embed.add_field(name="Before", value=f"```{target.name}```", inline=False)
+      embed.add_field(name="After", value=f"```Moderated Nickname {nick}```", inline=False)
+      embed.timestamp = datetime.datetime.now()
       await target.edit(nick=f"Moderated Nickname {nick}")
-      await ctx.send(f"{target.name}, was successfully moderated.")
+      await ctx.send(embed=embed)
     except:
       await ctx.send("I can't edit that user's nickname.")
     
