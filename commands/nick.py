@@ -8,17 +8,13 @@ class Nick(commands.Cog):
 
     @commands.command(aliases=['nick', 'name'])
     @commands.has_permissions(manage_nicknames=True)
-    async def nickname(self,ctx,target : nextcord.Member = None, *, nick=None):
-        
-        if target == None:
-            target = ctx.author
-
+    async def nickname(self,ctx,*, nick=None):
         if nick == None:
-            nick = target.edit(nick='')
+            nick = ctx.author.edit(nick=None)
 
         try:
-            await target.edit(nick=f"{nick}")
-            await ctx.send(f"{target.name}, was successfully changed to - `{nick}`")
+            await ctx.author.edit(nick=f"{nick}")
+            await ctx.send(f"{ctx.author.name}, was successfully changed to - `{nick}`")
         except:
             await ctx.send("Unable to edit users name.")
 
