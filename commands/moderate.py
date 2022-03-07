@@ -27,7 +27,7 @@ class moderate(commands.Cog):
       dm = await target.create_dm()
       embed = nextcord.Embed(
         title = "Alert",
-        description=f"Your have been moderated in {guild.name}, as your name has some special characters in it. If you want your name back go to <#922961486937206804> and do `!verify` to get your name back."
+        description=f"Your have been moderated in {guild.name}, as your name has some special characters in it."
       )
       await dm.send(embed=embed)
     except:
