@@ -18,7 +18,7 @@ DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 intents = nextcord.Intents.all()
 client = commands.Bot(command_prefix=',',owner_id=703578212072161280, intents=intents)
 start_time = time.time()
-#client.remove_command('help')
+client.remove_command('help')
 client.persistent_views_added = False
 
 @client.event
