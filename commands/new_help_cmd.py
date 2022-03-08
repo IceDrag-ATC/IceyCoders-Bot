@@ -12,25 +12,25 @@ class HelpSelect(nextcord.ui.Select):
             nextcord.SelectOption(label="Random", description="Shows a list of the commands that are completly random", emoji="🙃"),
             nextcord.SelectOption(label="Owner Only", description="Commands that only the owner can use", emoji="❌")
         ]
-        super().__init__(placeholder="Select an help selection", min_values=1, max_values=1, options=selectoptions)
+        super().__init__(placeholder="Select a help category", min_values=1, max_values=1, options=selectoptions)
 
     async def callback(self, interaction: nextcord.Interaction):
         if self.values[0] == "Moderation":
             embed=nextcord.Embed(
                 title=f"Moderation Information" , 
-                description="Here you can find the commands of moderation (staff only). D = Dyno, I = Iceycoders Bot",
+                description="Here you can find the commands for moderation (staff only). D = Dyno, I = Iceycoders Bot",
                 color=nextcord.Color.green()
             )
-
+            embed.timestamp = datetime.datetime.now()
             embed.add_field(name="Ban - D", value="Bans the user depending on the reason and duration, you can appeal this.",inline=True)
-            embed.add_field(name="Kick - D", value="Kicks the user from the server but, they are able to join back with an invite.",inline=True)
+            embed.add_field(name="Kick - D", value="Kicks the user from the server, but they are able to join back with an invite.",inline=True)
             embed.add_field(name="Mute - D",value="Mutes the user making them unable to join/type in chats, you can appeal this.",inline=True)
             embed.add_field(name="Warn - D",value="Warns the user depending on what they do, this has no serious actions.",inline=True)
-            embed.add_field(name="Purge - I",value="Bulks messages in a certain radius.",inline=True)
-            embed.add_field(name="Addrole - I", value="Adds a rike ti a specific member.",inline=True)
+            embed.add_field(name="Purge - I",value="Bulk delete messages in the channel.",inline=True)
+            embed.add_field(name="Addrole - I", value="Adds a role to a specific member.",inline=True)
             embed.add_field(name="Remrole - I",value="Removes a role from a specific member.",inline=True)
             embed.add_field(name="Slowmode - I",value="Sets a cooldown after every message you send.",inline=True)
-            embed.add_field(name="Moderate - I",value="Changes the users nickname as they have special characters in it.",inline=True)
+            embed.add_field(name="Moderate - I",value="Changes the user's nickname as they have special characters in it.",inline=True)
             
             embed.set_footer(text='End of Moderation help section.')
 
@@ -42,10 +42,10 @@ class HelpSelect(nextcord.ui.Select):
                 description="Here you can find commands that may be helpful towards you. All of these commands are custom.",
                 color=nextcord.Color.yellow()
             )
-    
-            embed.add_field(name="RTFM", value="Retrieves documentation on the nextcord/python libaries.",inline=True)
+            embed.timestamp = datetime.datetime.now()
+            embed.add_field(name="RTFM", value="Retrieves documentation on the nextcord/python libraries.",inline=True)
             embed.add_field(name="Report", value="Sends you a link where you can write a complaint about a member.",inline=True)
-            embed.add_field(name="Aboutme", value="Hows information about the bot.",inline=True)
+            embed.add_field(name="Aboutme", value="Shows information about the bot.",inline=True)
            
             embed.set_footer(text= 'End of Helpful help section')
 
@@ -54,19 +54,20 @@ class HelpSelect(nextcord.ui.Select):
         elif self.values[0] == "Random":
             embed=nextcord.Embed(
                 title="Random Information",
-                description="Here you can find commands that are just completly random towards the server, if they have 'Fun Command' next to them it means they are just random not serious.",
+                description="Here you can find commands that are just completely random towards the server; If a command is labelled 'Fun Command', it means they should not be taken seriously",
                 color=nextcord.Color.magenta()
             ) 
+            embed.timestamp = datetime.datetime.now()
     
             embed.add_field(name="Membercount", value="Shows you how many members are in the server.",inline=True)
             embed.add_field(name="Serverinfo", value="Shows you server stats (Region, Owner, Channles, etc).",inline=True)
-            embed.add_field(name="Nickname", value="Changes your nickname to what you want. You need the manage nick names permission, but something new that relates to this will be coming soon.",inline=True)
+            embed.add_field(name="Nickname", value="Changes your nickname to what you want. You need the manage nicknames permission, but something new that relates to this will be coming soon.",inline=True)
             embed.add_field(name="Gayrate", value="Fun command - Shows a random percentage on how gay you are.",inline=True)
-            embed.add_field(name="Pp", value="Fun command - Shows a random size on how big your pp is.,inline=True")
+            embed.add_field(name="Pp", value="Fun command - Shows a random size on how big your pp is.",inline=True)
             embed.add_field(name="Rps", value="Rock paper scissors - Have a game with the bot.",inline=True)
             embed.add_field(name="Uptime", value="Shows how long the bot has been online for.",inline=True)
-            embed.add_field(name="Usage", value="Shows you the usages of ram, cpu the bot uses.",inline=True)
-            embed.add_field(name="Ping", value="Shows you the delay for the bot to respong.",inline=True)
+            embed.add_field(name="Usage", value="Shows you the usages of RAM, CPU the bot uses.",inline=True)
+            embed.add_field(name="Ping", value="Shows the bot's latency information.",inline=True)
             embed.add_field(name="Help", value="What you are seeing right this second.",inline=True)
 
    
@@ -80,6 +81,7 @@ class HelpSelect(nextcord.ui.Select):
                 description="Shows commands that only the owner can use.",
                 color=nextcord.Color.orange()
             )
+            embed.timestamp = datetime.datetime.now()
 
             embed.add_field(name="Eval", value="Sends stuff thats in a code block.",inline=True)
             embed.add_field(name="Sr",value="Self Role Buttons.",inline=True)
@@ -95,6 +97,7 @@ class HelpSelect(nextcord.ui.Select):
                 description="This can be a bug or a wrong command, Please report this to the bot owner.",
                 color=nextcord.Color.red()
             )
+            embed.timestamp = datetime.datetime.now()
 
             owner = 703578212072161280
             dm = await owner.create_dm()
@@ -103,6 +106,7 @@ class HelpSelect(nextcord.ui.Select):
                 description=f"Hey, one of the options in the help command called: {self.values[0]}, has ran in to an error!",
                 color = nextcord.Color.red()
             )
+            embed.timestamp = datetime.datetime.now()
             await dm.send(embed=embed)
             await interaction.response.edit_message(embed=embed)
 
@@ -121,7 +125,7 @@ class HelpCmd(commands.Cog):
         view1=HelpView()
         embed=nextcord.Embed(
             title="Help",
-            description="These are the command in the server that you can use, use the selection box at the bottom to navigate to other categorys.\n\n🔨 - Moderation\n\n✋ - Helpful\n\n🙃 - Random\n\n❌ - Owner Only",
+            description="These are the commands in the server that you can use, use the selection box at the bottom to navigate to other categories.\n\n🔨 - Moderation\n\n✋ - Helpful\n\n🙃 - Random\n\n❌ - Owner Only",
             color=nextcord.Color.fuchsia()
         )
         embed.timestamp = datetime.datetime.now()
