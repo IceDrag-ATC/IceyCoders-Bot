@@ -45,6 +45,8 @@ class HelpSelect(nextcord.ui.Select):
             embed.timestamp = datetime.datetime.now()
             embed.add_field(name="RTFM", value="Retrieves documentation on the nextcord/python libraries.",inline=True)
             embed.add_field(name="Report", value="Sends you a link where you can write a complaint about a member.",inline=True)
+            embed.add_field(name="Paste", value="Sends a link for you to paste your code in",inline=True)
+            embed.add_field(name="Suggest", value="Sends you a DM to suggest something for discord/bot/video.",inline=True)
             embed.add_field(name="Aboutme", value="Shows information about the bot.",inline=True)
            
             embed.set_footer(text= 'End of Helpful help section')
@@ -69,7 +71,7 @@ class HelpSelect(nextcord.ui.Select):
             embed.add_field(name="Usage", value="Shows you the usages of RAM, CPU the bot uses.",inline=True)
             embed.add_field(name="Ping", value="Shows the bot's latency information.",inline=True)
             embed.add_field(name="Help", value="What you are seeing right this second.",inline=True)
-
+            embed.add_field(name="Aboutme", value="Shows information about the bot.",inline=True)
    
             embed.set_footer(text='End of Random help section')
 
