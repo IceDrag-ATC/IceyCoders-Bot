@@ -9,7 +9,6 @@ from nextcord.ext import commands
 from .utils import fuzzy
 
 class SphinxObjectFileReader:
-    # Inspired by Sphinx's InventoryFileReader
     BUFSIZE = 16 * 1024
 
     def __init__(self, buffer):
@@ -44,7 +43,6 @@ class SphinxObjectFileReader:
 class Rtfm(commands.Cog):
     """Commands for fetching Python library documentation"""
 
-    # full credit to https://github.com/Rapptz/RoboDanny
     def __init__(self, client):
         self.client = client
 
@@ -56,7 +54,7 @@ class Rtfm(commands.Cog):
             raise RuntimeError("Invalid objects.inv file version.")
 
         projname = stream.readline().rstrip()[11:]
-        stream.readline().rstrip()[11:]  # version line is not needed
+        stream.readline().rstrip()[11:]
 
         line = stream.readline()
         if "zlib" not in line:
@@ -133,7 +131,6 @@ class Rtfm(commands.Cog):
         obj = re.sub(r"^(?:nextcord\.(?:ext\.)?)?(?:commands\.)?(.+)", r"\1", obj)
 
         if key.startswith("master"):
-            # point the abc.Messageable types properly:
             q = obj.lower()
             for name in dir(discord.abc.Messageable):
                 if name[0] == "_":

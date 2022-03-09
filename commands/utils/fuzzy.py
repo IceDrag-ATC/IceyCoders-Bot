@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-
-"""
-This Source Code Form is subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at http://mozilla.org/MPL/2.0/.
-"""
-
-# help with: http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/
-
 import heapq
 import re
 from difflib import SequenceMatcher
@@ -96,7 +86,6 @@ def extract_one(query, choices, *, scorer=quick_ratio, score_cutoff=0):
     try:
         return max(it, key=key)
     except Exception:
-        # iterator could return nothing
         return None
 
 
@@ -112,7 +101,6 @@ def extract_or_exact(query, choices, *, limit=None, scorer=quick_ratio, score_cu
     top = matches[0][1]
     second = matches[1][1]
 
-    # check if the top one is exact or more than 30% more correct than the top
     if top == 100 or top > (second + 30):
         return [matches[0]]
 
