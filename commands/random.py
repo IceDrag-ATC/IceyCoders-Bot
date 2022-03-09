@@ -40,13 +40,40 @@ class rand(commands.Cog):
     async def report(self, ctx):
         embed = nextcord.Embed(
             title='Reports',
-            description = 'To report someone use the link below to report them\n',
+            description = 'To report someone use the link below to report them\nhttps://dyno.gg/form/2db2a60',
             color=nextcord.Color.random()
         )
         await ctx.author.send(embed=embed)
         await ctx.reply("Check your dms.")
-      
     
+    @commands.command()
+    async def paste(self, ctx):
+        await ctx.send("Please either paste in your code with pastebin, or https://paste.nextcord.dev/.")
+    
+    @commands.command()
+    async def suggest(self, ctx):
+        embed = nextcord.Embed(
+            title='Suggestions',
+            description='To make a suggestion about a video, bot or server. Click the link below\nhttps://dyno.gg/form/240bffed',
+            color = nextcord.Color.random()
+        )
+        await ctx.author.send(embed=embed)
+        await ctx.reply("Check your dms.")
+      
+    @commands.command()
+    async def aboutme(self, ctx):
+        embed = nextcord.Embed(
+            title="About Fallen World Utilites",
+            color=nextcord.Color.blue()
+        )
+        embed.add_field(name="Creator", value="IceDragon#9069", inline=True)
+        embed.add_field(name="Bot Creation Date", value="13/2/2022", inline=True)
+        embed.add_field(name="Coding Language", value="Python", inline=True)
+        embed.add_field(name="Permissions", value="Administrator", inline=True)
+        embed.add_field(name="Hosting (24/7)", value="Heroku", inline=True)
+        await ctx.send(embed=embed)
+
+
  
 def setup(client):
     client.add_cog(rand(client))
