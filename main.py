@@ -12,7 +12,7 @@ um = 0
 uh = 0
 ud = 0
 
-ownerRole = 942457163614400613
+ownerRole = 703578212072161280
 
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 intents = nextcord.Intents.all()
